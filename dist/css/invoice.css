@@ -1,0 +1,13 @@
+.divscroll {
+overflow:scroll;
+height:400px;
+}
+.cashreceived{
+	width: 30px;
+	height: 30px;
+ 
+}
+.cashreceived input:checked ~ .checkmark {
+  background-color: red;
+}
+
