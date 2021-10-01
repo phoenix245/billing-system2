@@ -1,16 +1,16 @@
 <?php 
 require_once "libs/helper.php";
 require_once "object.php";
-// if (isset($_COOKIE['name'])) {
-//   session_start();
-//   $_SESSION['id'] = $_COOKIE['id'];
-//   $_SESSION['name'] = $_COOKIE['name'];
-//   $_SESSION['email'] = $_COOKIE['email'];
-//   $_SESSION['image'] = $_COOKIE['image'];
-//   $_SESSION['role_id'] = $_COOKIE['role_id'];
-//   $_SESSION['role_name'] = $_COOKIE['rname'];
-//   header('location:dashboard.php');
-// }
+if (isset($_COOKIE['name'])) {
+  session_start();
+  $_SESSION['id'] = $_COOKIE['id'];
+  $_SESSION['name'] = $_COOKIE['name'];
+  $_SESSION['email'] = $_COOKIE['email'];
+  $_SESSION['image'] = $_COOKIE['image'];
+  $_SESSION['role_id'] = $_COOKIE['role_id'];
+  $_SESSION['role_name'] = $_COOKIE['rname'];
+  header('location:dashboard.php');
+}
 
 if(isset($_POST['btnLogin'])){
   $err = [];

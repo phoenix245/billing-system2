@@ -20,14 +20,6 @@ class User extends Common{
 			$_SESSION['role_id'] = $data->role_id;
 			$_SESSION['role_name'] = $data->rname;
 
-			if (isset($_POST['remember'])) {
-				setcookie('id',$data->id,time()+60*60);
-				setcookie('name',$data->name,time()+60*60);
-				setcookie('email',$data->email,time()+60*60);
-				setcookie('image',$data->image,time()+60*60);
-				setcookie('role_id',$data->role_id,time()+60*60);
-				setcookie('role_name',$data->rname,time()+60*60);
-			}
 			header('location:dashboard.php');
 			
 		} else{

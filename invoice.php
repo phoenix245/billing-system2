@@ -26,6 +26,14 @@ $data = $item->listItems();
   <!-- Custom Css -->
   <link rel="stylesheet" type="text/css" href="dist/css/invoice.css">
   <script type="text/javascript" src="../javascript/preview.js"></script>
+  <style type="text/css">
+        /*if you want to remove some content in print display then use .no_print class on it */
+        @media print {
+            #datatable_wrapper .row:first-child {display:none;}
+            #datatable_wrapper .row:last-child {display:none;}
+            .no_print {display:none;}
+        }
+    </style>
   <link rel="stylesheet" type="text/css" href="../css/Preview.css" />
 </head>
 </head>
@@ -201,7 +209,8 @@ $data = $item->listItems();
 								</tr>
 							    <tr>
 							    	<td>
-						              <input type="button" value="Print" class="btn btn-primary" onclick="window.print()"/>	
+						              <input type="button" id="printBtn" value="Print" class="btn btn-primary"/>	
+						              <!-- onclick="window.print()" -->
 							    	</td>
 							    </tr>
 							
@@ -255,6 +264,16 @@ $data = $item->listItems();
    			
 			})
 		
+
+        $(function() {
+
+            $("#printBtn").on('click', function() {
+
+                $.print("#printable");
+
+            });
+
+        });
 
 
 
