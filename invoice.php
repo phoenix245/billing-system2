@@ -116,9 +116,11 @@ $data = $item->listItems();
 											<label><?php echo $d->name ?></label>
 										</td>
 										<td>
-											<input type="text" class="form-control" name="quantity" id="quantity"  placeholder="Enter quantity" autocomplete="off" >
+											<div class="data">
+											<input type="text" class="form-control" name="quantity"  id="quantity" placeholder="Enter quantity"  autocomplete="off" >
 
-									  		<input type="text"name="rate" id="rate" class="form-control"  value="<?php echo $d->rate ?>"  autocomplete="off" readonly>
+									  		<input type="text"name="rate" id="rate" class="form-control rate"  value="<?php echo $d->rate ?>"  autocomplete="off" readonly>
+									  		</div>
 										</td>
 									</tr>
 									<?php } ?>
@@ -134,7 +136,7 @@ $data = $item->listItems();
 					    <input type="text" class="form-control">
 					    <label for="subtotal">VAT</label>
 					    <input type="text" class="form-control">
-					    <button class="btn btn-primary" name="findTotal" id="findTotal" onclick="calculate()" />Total</button>
+					    <button class="btn btn-primary" name="findTotal" id="findTotal"  id="findTotal" />Total</button>
 					    <input type="text" class="form-control"  placeholder="Total Amount">
 					    <button class="btn btn-primary" type="reset">Reset</button>
 					
@@ -239,33 +241,8 @@ $data = $item->listItems();
 <script src="dist/js/demo.js"></script>(
 <script src="dist/js/pages/dashboard3.js"></script>
 <script type="text/javascript">
-	
-	function calculate(){
-		
-		
-		var checked=0;
-		var sum=0;
 
-			$("input[type=checkbox][id='items']").each(function(){
-   			if  (this.checked)
-   				{
-   				
-   				for (var i = 0; i<items.length;i++){
-
-   			var coffeeRate = document.getElementById("rate").value;
-			var coffeeQuantity = document.getElementById("quantity").value;
-			var coffeeAmt=(coffeeRate*coffeeQuantity);
-		
-		 
-      
-  			}
-  			alert(coffeeAmt);
-   			}
-   			
-			})
-		
-
-        $(function() {
+	$(function() {
 
             $("#printBtn").on('click', function() {
 
@@ -276,6 +253,45 @@ $data = $item->listItems();
         });
 
 
+	$(function () {
+        $("#findTotal").click(function () {
+            //Reference the CheckBoxes and determine Total Count of checked CheckBoxes.
+            $total = 0;
+            var checked = $("#dynamic input[type=checkbox]:checked").length;
+           	for (var i = 0; i< checked ;i++){ 
+           		var data = $(this).closest("div.data").find("input[name='quantity']").val();
+      //      		var row = $(this).closest(".data");
+  				// var quantity = row.find("#quantity").value;
+  				alert(data);
+				var coffeeQuantity = document.getElementById("quantity").value;
+				alert(coffeeQuantity);
+   				var coffeeRate = document.getElementById("rate").value;
+				var coffeeAmt=(coffeeRate*coffeeQuantity);
+			} //loop ends
+        });
+    }); //functionn ends
+
+
+	// function calculate(){
+		
+		
+	// 	var checked=0;
+	// 	var sum=0;
+
+	// 		$("input[type=checkbox][id='items']").each(function(){
+ //   			if  (this.checked){
+ //   				alert(input[type=checkbox][id='items']);
+ //   				for (var i = 0; i<items.length;i++){
+ //   					alert(items);
+	// 			var coffeeQuantity = document.getElementById("quantity").value;
+ //   				var coffeeRate = document.getElementById("rate").value;
+	// 			var coffeeAmt=(coffeeRate*coffeeQuantity);
+	// 			}
+ //  			alert(coffeeAmt);
+ //   			}
+   			
+	// 		})
+	// }
 
 
 		// var coffeeRate = document.getElementById("rate").value;
@@ -310,7 +326,23 @@ $data = $item->listItems();
 		//if true calculate with price
 		//set value of subtotal, VAT and total amount
 		//end
-	}
+	// }
+
+// 	function calculate() {
+//     var total = 0;
+//     for (i=1; i<=total_items; i++) {
+         
+//         itemID = document.getElementById("qnt_"+i);
+//         if (typeof itemID === 'undefined' || itemID === null) {
+//             alert("No such item - " + "qnt_"+i);
+//         } else {
+//             total = total + parseInt(itemID.value) * parseInt(itemID.getAttribute("data-price"));
+//         }
+         
+//     }
+//     document.getElementById("ItemsTotal").innerHTML = "$" + total;
+     
+// }
 </script>
 </body>
 </html>
